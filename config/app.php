@@ -170,6 +170,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Application\Providers\System\EventServiceProvider::class,
         App\Application\Providers\System\RouteServiceProvider::class,
+        App\Application\Providers\User\UserServiceProvider::class,
 
         /*
          * Routing Service Providers
