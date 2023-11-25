@@ -1,0 +1,30 @@
+includes:
+    - ./phpstan-baseline.tests.neon
+    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - ./vendor/phpstan/phpstan-phpunit/extension.neon
+    - ./vendor/phpstan/phpstan-mockery/extension.neon
+    - phar://phpstan.phar/conf/bleedingEdge.neon
+
+parameters:
+    # PHPStan inspection level:
+    level: 7
+
+    # Larastan configuration
+    checkModelProperties: true
+    noUnnecessaryCollectionCall: true
+    noModelMake: true
+    databaseMigrationsPath:
+        - database/migrations
+        - database/migrations/live
+
+    # Open error in IDE
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+
+    # Paths analysed
+    paths:
+        - tests/
+
+    # PHPStan process configuration
+    parallel:
+        maximumNumberOfProcesses: 10
