@@ -9,6 +9,7 @@ use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Hashing\HashManager;
 use Illuminate\Support\Facades\Facade;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
@@ -38,6 +39,8 @@ abstract class UnitTestCase extends TestCase
         $container->singleton('log', FakeLog::class);
         // Bind the Application facade to the Container
         $container->singleton('app', static fn (): Container => $container);
+        // Bind the Hash facade to the Container
+        $container->singleton('hash', static fn (): HashManager => new HashManager($container));
         // Bind the Application interface to the Container
         $container->singleton(Application::class, static fn (): Container => $container);
         // Put the config mock instance into the container
@@ -68,6 +71,7 @@ abstract class UnitTestCase extends TestCase
     private function mockConfig(Container $container): void
     {
         $this->configMock = Mockery::mock(ConfigContract::class);
+        $this->mockHash($this->configMock);
         $container->instance('config', $this->configMock);
     }
 
@@ -75,5 +79,20 @@ abstract class UnitTestCase extends TestCase
     {
         $this->dispatcherMock = Mockery::mock(Dispatcher::class);
         $container->instance(Dispatcher::class, $this->dispatcherMock);
+    }
+
+    private function mockHash(MockInterface $configMock): void
+    {
+        $configMock
+            ->shouldReceive('get')
+            ->with('hashing.driver', 'bcrypt')
+            ->andReturn('bcrypt');
+        $configMock
+            ->shouldReceive('get')
+            ->with('hashing.bcrypt')
+            ->andReturn([
+                'rounds' => 12,
+                'verify' => true,
+            ]);
     }
 }
