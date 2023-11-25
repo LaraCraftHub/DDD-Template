@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "config:base",
+    "group:allNonMajor",
+    ":combinePatchMinorReleases",
+    ":rebaseStalePrs",
+    ":separateMultipleMajorReleases"
+  ],
+  "schedule": [
+    "after 9am and before 12am on monday"
+  ],
+  "reviewersFromCodeOwners": true,
+  "labels": [
+    ":soon: renovate"
+  ],
+  "timezone": "Europe/Paris",
+  "docker": {
+    "enabled": false
+  },
+  "docker-compose": {
+    "enabled": false
+  }
+}
