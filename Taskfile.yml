@@ -153,12 +153,23 @@ tasks:
                 vars:
                     CLI_ARGS: vendor/bin/pint {{.PINT_ARGS}} {{.CLI_ARGS}}
 
+    rector:
+        desc: Run rector
+        cmds:
+            -   task: php-cli
+                vars:
+                    CLI_ARGS: vendor/bin/rector process {{.RECTOR_ARGS}} {{.CLI_ARGS}}
+
     lint:
         desc: Run linting
         cmds:
             -   cmd: |
                     printf "\n\033[0;36m\033[1mRunning Pint\033[0m\n"
                     task pint -- --test
+                ignore_error: true
+            -   cmd: |
+                    printf "\n\033[0;36m\033[1mRunning Rector\033[0m\n\n"
+                    task rector -- --dry-run
                 ignore_error: true
 
     lint:fix:
@@ -167,6 +178,9 @@ tasks:
             -   cmd: |
                     printf "\n\033[0;36m\033[1mRunning Pint\033[0m\n"
                     task pint
+            -   cmd: |
+                    printf "\n\033[0;36m\033[1mRunning Rector\033[0m\n\n"
+                    task rector
 
     # Wrapper tasks
     install:
