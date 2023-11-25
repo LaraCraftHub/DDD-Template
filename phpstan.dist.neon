@@ -22,7 +22,9 @@ parameters:
     # Paths analysed
     # Analyse only files in DDD iteration
     paths:
-        - app
+        - app/Domain
+        - app/Application
+        - app/Infrastructure
 
     excludePaths:
         - app/Console/Commands/OneShot
