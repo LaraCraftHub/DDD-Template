@@ -1,0 +1,27 @@
+name: 'PHP Setup'
+description: 'Setup everything for PHP'
+
+inputs:
+  php-version:
+    description: 'PHP Version'
+    required: false
+    default: '8.2.11'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: composer-${{ hashFiles('composer.lock') }}
+
+    - name: Install PHP
+      uses: shivammathur/setup-php@a36e1e52ff4a1c9e9c9be31551ee4712a6cb6bd0
+      with:
+        php-version: ${{ inputs.php-version }}
+
+    - name: Install PHP dependencies
+      run: composer install --no-interaction --no-progress
+      shell: bash
