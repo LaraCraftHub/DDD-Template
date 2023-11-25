@@ -118,6 +118,34 @@ tasks:
                 vars:
                     CLI_ARGS: tinker {{.CLI_ARGS}}
 
+    ide-helper:
+        desc: Generate ide-helper files
+        cmds:
+            -   task: artisan
+                vars:
+                    CLI_ARGS: clear-compiled
+            -   task: artisan
+                vars:
+                    CLI_ARGS: ide-helper:generate
+            -   task: artisan
+                vars:
+                    CLI_ARGS: ide-helper:meta
+            -   task: artisan
+                vars:
+                    CLI_ARGS: ide-helper:eloquent
+
+    models-ac:
+        desc: Generate ide-helper models autocomplete
+        deps:
+            -   task: database
+        cmds:
+            -   task: artisan
+                vars:
+                    CLI_ARGS: clear-compiled
+            -   task: artisan
+                vars:
+                    CLI_ARGS: ide-helper:models
+
     # Wrapper tasks
     install:
         desc: Install the project for the first time
@@ -125,3 +153,4 @@ tasks:
             -   task: composer
                 vars:
                     CLI_ARGS: install
+            -   task: ide-helper
