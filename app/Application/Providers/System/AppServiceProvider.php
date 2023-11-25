@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Providers;
+namespace App\Application\Providers\System;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;

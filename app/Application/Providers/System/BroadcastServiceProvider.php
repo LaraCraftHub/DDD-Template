@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Providers;
+namespace app\Application\Providers\System;
 
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\ServiceProvider;

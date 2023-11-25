@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Middleware;
 
-use App\Application\Providers\RouteServiceProvider;
+use App\Application\Providers\System\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

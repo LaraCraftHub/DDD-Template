@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Providers;
+namespace App\Application\Providers\System;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
