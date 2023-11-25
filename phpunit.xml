@@ -6,12 +6,22 @@
 >
     <testsuites>
         <testsuite name="Unit">
-            <directory>tests/Unit</directory>
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
+        <testsuite name="Integration">
+            <directory suffix="Test.php">./tests/Integration</directory>
+        </testsuite>
+        <testsuite name="Integration1">
+            <directory suffix="Test.php">./tests/Integration/Application</directory>
+        </testsuite>
+        <testsuite name="Integration2">
+            <directory suffix="Test.php">./tests/Integration/Domain</directory>
+        </testsuite>
+        <testsuite name="Integration3">
+            <directory suffix="Test.php">./tests/Integration/Infrastructure</directory>
         </testsuite>
     </testsuites>
+    <coverage/>
     <source>
         <include>
             <directory>app</directory>
@@ -21,7 +31,7 @@
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="CACHE_DRIVER" value="array"/>
-        <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
+        <env name="DB_CONNECTION" value="testing"/>
         <!-- <env name="DB_DATABASE" value=":memory:"/> -->
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
