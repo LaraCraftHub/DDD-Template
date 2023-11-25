@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 use App\Domain\BusinessEntity;
+use App\Domain\Project\Project;
 use App\Infrastructure\User\EloquentUser;
 use Carbon\CarbonImmutable;
 use Illuminate\Auth\Authenticatable;
@@ -38,6 +39,8 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property-read int|null $notifications_count
  * @property-read Collection<int, PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ * @property-read Collection<int, Project> $projects
+ * @property-read int|null $projects_count
  *
  * @mixin \Eloquent
  */
