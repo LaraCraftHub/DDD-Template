@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Broadcasting;
 
-use App\Application\Models\User;
+use App\Domain\User\User;
 
 class UserChannel
 {
