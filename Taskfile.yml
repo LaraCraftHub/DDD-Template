@@ -1,0 +1,127 @@
+version: '3'
+
+silent: true
+
+tasks:
+    # Docker tasks
+    docker-compose:
+        desc: Call docker compose cli
+        cmds:
+            - docker compose {{.CLI_ARGS}}
+
+    up:
+        desc: Create and start a container
+        cmds:
+            -   task: docker-compose
+                vars:
+                    CLI_ARGS: up --detach --no-deps {{.SERVICE | default "php"}}
+        status:
+            - docker compose ps --services --status=running | grep {{.SERVICE | default "php"}}
+
+    down:
+        desc: Stop and remove containers
+        cmds:
+            -   task: docker-compose
+                vars:
+                    CLI_ARGS: down -v
+
+    run:
+        desc: Run a one-off command on a container
+        cmds:
+            -   task: docker-compose
+                vars:
+                    CLI_ARGS: run --rm --no-deps {{.SERVICE | default "php"}} {{.CLI_ARGS}}
+
+    exec:
+        desc: Execute a command in a running container
+        cmds:
+            -   task: docker-compose
+                vars:
+                    CLI_ARGS: exec {{.SERVICE | default "php"}} {{.CLI_ARGS}}
+        preconditions:
+            -   task: docker-compose
+                vars:
+                    CLI_ARGS: ps --services --status=running | grep {{.SERVICE | default "php"}}
+
+    execrun:
+        desc: Launch a command using "exec" if container is running, or with "run" otherwise
+        cmds:
+            -   cmd: |
+                    if [[ -n `docker compose ps --services --status=running | grep {{.SERVICE | default "php"}}` ]]; then
+                      task exec SERVICE={{.SERVICE | default "php"}} -- {{.CLI_ARGS}}
+                    else
+                      task run SERVICE={{.SERVICE | default "php"}} -- {{.CLI_ARGS}}
+                    fi;
+
+    # Services
+    php:
+        desc: Run php in background
+        run: once
+        cmds:
+            -   task: up
+                vars:
+                    SERVICE: php
+
+    database:
+        desc: Run database in background
+        run: once
+        vars:
+            PORT: 3306
+        cmds:
+            -   task: up
+                vars:
+                    SERVICE: database
+            -   task: shell
+                vars:
+                    CLI_ARGS: -c "while ! nc -z database {{.PORT}} 2> /dev/null; do sleep 0.1; done;" 2> /dev/null
+
+    # CLI tasks
+    shell:
+        desc: Run shell
+        cmds:
+            -   task: execrun
+                vars:
+                    SERVICE: php
+                    CLI_ARGS: /bin/sh {{.CLI_ARGS}}
+
+    php-cli:
+        desc: Run PHP-cli
+        cmds:
+            -   task: execrun
+                vars:
+                    SERVICE: php
+                    CLI_ARGS: php {{.CLI_ARGS | default "-a"}}
+
+    composer:
+        desc: Run composer
+        cmds:
+            -   task: execrun
+                vars:
+                    SERVICE: composer
+                    CLI_ARGS: composer {{.CLI_ARGS}}
+
+    # Tools tasks
+    artisan:
+        desc: Run Laravel Artisan
+        cmds:
+            -   task: php-cli
+                vars:
+                    CLI_ARGS: artisan {{.CLI_ARGS}}
+
+    tinker:
+        desc: Run Laravel Tinker
+        interactive: true
+        deps:
+            -   task: database
+        cmds:
+            -   task: artisan
+                vars:
+                    CLI_ARGS: tinker {{.CLI_ARGS}}
+
+    # Wrapper tasks
+    install:
+        desc: Install the project for the first time
+        cmds:
+            -   task: composer
+                vars:
+                    CLI_ARGS: install
