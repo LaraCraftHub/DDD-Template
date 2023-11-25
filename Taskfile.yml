@@ -134,6 +134,18 @@ tasks:
                 vars:
                     CLI_ARGS: ide-helper:eloquent
 
+    models-ac:
+        desc: Generate ide-helper models autocomplete
+        deps:
+            -   task: database
+        cmds:
+            -   task: artisan
+                vars:
+                    CLI_ARGS: clear-compiled
+            -   task: artisan
+                vars:
+                    CLI_ARGS: ide-helper:models
+
     # Wrapper tasks
     install:
         desc: Install the project for the first time
