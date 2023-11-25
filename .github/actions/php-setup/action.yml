@@ -18,7 +18,7 @@ runs:
         key: composer-${{ hashFiles('composer.lock') }}
 
     - name: Install PHP
-      uses: shivammathur/setup-php@a36e1e52ff4a1c9e9c9be31551ee4712a6cb6bd0
+      uses: shivammathur/setup-php@e6d44f159ae6c6f0d1c08f5b51da74877e49de98
       with:
         php-version: ${{ inputs.php-version }}
 
