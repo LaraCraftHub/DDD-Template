@@ -88,4 +88,9 @@ class EloquentUser extends Model
             'project_id',
         )->using(UserProject::class);
     }
+
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
 }
