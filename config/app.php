@@ -31,7 +31,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,11 +165,17 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
+        App\Application\Providers\System\AppServiceProvider::class,
+        App\Application\Providers\System\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        App\Application\Providers\System\EventServiceProvider::class,
+        App\Application\Providers\System\RouteServiceProvider::class,
+
+        /*
+         * Routing Service Providers
+         */
+        App\Application\Routing\WebRoutingProvider::class,
+        App\Application\Routing\ApiRoutingProvider::class,
     ])->toArray(),
 
     /*
