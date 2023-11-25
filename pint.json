@@ -1,0 +1,75 @@
+{
+  "preset": "laravel",
+  "rules": {
+    "array_indentation": true,
+    "array_push": true,
+    "concat_space": {
+      "spacing": "one"
+    },
+    "declare_strict_types": true,
+    "control_structure_braces": true,
+    "control_structure_continuation_position": true,
+    "curly_braces_position": true,
+    "dir_constant": true,
+    "global_namespace_import": {
+      "import_classes": true,
+      "import_constants": true,
+      "import_functions": true
+    },
+    "increment_style": false,
+    "is_null": true,
+    "list_syntax": true,
+    "modernize_types_casting": true,
+    "native_function_invocation": true,
+    "no_alias_functions": {
+      "sets": ["@all"]
+    },
+    "no_multiple_statements_per_line": true,
+    "no_superfluous_elseif": true,
+    "no_useless_else": true,
+    "no_useless_return": true,
+    "operator_linebreak": {
+      "only_booleans": true,
+      "position": "beginning"
+    },
+    "ordered_class_elements": true,
+    "ordered_imports": {
+      "imports_order": [
+        "class",
+        "function",
+        "const"
+      ],
+      "sort_algorithm": "alpha"
+    },
+    "single_trait_insert_per_statement": true,
+    "php_unit_construct": true,
+    "php_unit_method_casing": {
+      "case": "snake_case"
+    },
+    "php_unit_test_annotation": true,
+    "php_unit_test_case_static_method_calls": {
+      "call_type": "this"
+    },
+    "phpdoc_align": {
+      "align": "left"
+    },
+    "phpdoc_annotation_without_dot": true,
+    "phpdoc_line_span": {
+      "const": "single",
+      "property": "single",
+      "method": "multi"
+    },
+    "phpdoc_no_alias_tag": false,
+    "phpdoc_summary": false,
+    "phpdoc_to_comment": false,
+    "return_assignment": true,
+    "single_line_throw": false,
+    "statement_indentation": true,
+    "ternary_to_null_coalescing": true,
+    "yoda_style": {
+      "equal": false,
+      "identical": false,
+      "less_and_greater": false
+    }
+  }
+}
