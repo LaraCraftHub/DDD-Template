@@ -37,6 +37,7 @@ return static function (RectorConfig $rectorConfig): void {
         LevelSetList::UP_TO_PHP_82,
         // LARAVEL
         LaravelSetList::LARAVEL_CODE_QUALITY,
+        //LaravelSetList::LARAVEL_STATIC_TO_INJECTION, // TODO: find a way to apply it only for infrastructure folder
         //LaravelSetList::LARAVEL_ELOQUENT_MAGIC_METHOD_TO_QUERY_BUILDER, User::find => User::query()->find
         LaravelSetList::LARAVEL_FACADE_ALIASES_TO_FULL_NAMES,
         LaravelLevelSetList::UP_TO_LARAVEL_100,
