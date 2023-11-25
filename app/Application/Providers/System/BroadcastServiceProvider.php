@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace app\Application\Providers\System;
 
+use App\Application\Broadcasting\UserChannel;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,8 +15,8 @@ class BroadcastServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Broadcast::routes();
+        Broadcast::routes(/* ['middleware' => 'api'] */);
 
-        require base_path('routes/channels.php');
+        Broadcast::channel('user.{user}', UserChannel::class);
     }
 }
