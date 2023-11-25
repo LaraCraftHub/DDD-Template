@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Models;
+namespace App\Domain\User;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Domain\BusinessEntity;
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -44,7 +45,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  *
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements BusinessEntity, MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
