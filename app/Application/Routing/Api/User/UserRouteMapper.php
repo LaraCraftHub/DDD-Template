@@ -6,7 +6,6 @@ namespace App\Application\Routing\Api\User;
 
 use App\Application\Http\Controllers\Api\Project\GetUserProjectsByStatusController;
 use App\Application\Routing\RouteMapper;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 
 final class UserRouteMapper implements RouteMapper
