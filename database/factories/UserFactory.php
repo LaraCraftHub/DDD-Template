@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends Factory
 {
+    protected $model = User::class;
+
     /**
      * Define the model's default state.
      *
@@ -25,7 +27,7 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => new DateTimeImmutable(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$04$YZwBYf03P1Bwzq2DmUEy5uFz7AsflDD2mIRnlYf04VFAsE4sck8cS', // password
             'remember_token' => Str::random(10),
         ];
     }

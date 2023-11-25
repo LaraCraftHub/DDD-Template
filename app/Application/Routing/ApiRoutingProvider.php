@@ -29,7 +29,7 @@ final class ApiRoutingProvider extends RouteServiceProvider
     public function map(): void
     {
         Route::group([
-            'middleware' => ['api', 'auth:sanctum'],
+            'middleware' => ['api'], // 'auth:sanctum'
             'prefix' => 'api',
             'as' => 'api.',
         ], function (Router $router): void {
