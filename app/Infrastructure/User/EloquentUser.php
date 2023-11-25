@@ -4,9 +4,14 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\User;
 
+use App\Domain\Project\Project;
+use App\Domain\User\User;
+use App\Domain\UserProject\UserProject;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -14,12 +19,22 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * App\Infrastructure\User\EloquentUser
  *
- * @method static Builder|EloquentUser newModelQuery()
- * @method static Builder|EloquentUser newQuery()
- * @method static Builder|EloquentUser query()
- * @method static Builder|EloquentUser onlyTrashed()
- * @method static Builder|EloquentUser withTrashed()
- * @method static Builder|EloquentUser withoutTrashed()
+ * @method static UserFactory factory($count = null, $state = [])
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User onlyTrashed()
+ * @method static Builder|User query()
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereDeletedAt($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereEmailVerifiedAt($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @method static Builder|User withTrashed()
+ * @method static Builder|User withoutTrashed()
  *
  * @mixin \Eloquent
  */
@@ -60,4 +75,17 @@ class EloquentUser extends Model
         'email_verified_at' => 'immutable_datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @return BelongsToMany<Project>
+     */
+    public function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Project::class,
+            'user_project',
+            'user_id',
+            'project_id',
+        )->using(UserProject::class);
+    }
 }

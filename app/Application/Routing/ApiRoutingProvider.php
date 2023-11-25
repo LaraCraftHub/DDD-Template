@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Routing;
 
+use App\Application\Routing\Api\Project\ProjectRouteMapper;
 use App\Application\Routing\Api\User\UserRouteMapper;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
@@ -20,6 +21,7 @@ final class ApiRoutingProvider extends RouteServiceProvider
         parent::__construct($app);
         // Declare all route mappers
         $this->routeMappers = [
+            new ProjectRouteMapper(),
             new UserRouteMapper(),
         ];
     }
