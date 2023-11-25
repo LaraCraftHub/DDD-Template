@@ -170,6 +170,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Application\Providers\System\EventServiceProvider::class,
         App\Application\Providers\System\RouteServiceProvider::class,
+
+        /*
+         * Routing Service Providers
+         */
+        App\Application\Routing\WebRoutingProvider::class,
+        App\Application\Routing\ApiRoutingProvider::class,
     ])->toArray(),
 
     /*
