@@ -160,6 +160,26 @@ tasks:
                 vars:
                     CLI_ARGS: vendor/bin/rector process {{.RECTOR_ARGS}} {{.CLI_ARGS}}
 
+    phpstan:
+        desc: Run Phpstan
+        cmds:
+            -   task: phpstan:app
+            -   task: phpstan:tests
+
+    phpstan:app:
+        desc: Run Phpstan for App code
+        cmds:
+            -   task: php-cli
+                vars:
+                    CLI_ARGS: vendor/bin/phpstan analyse {{.PINT_ARGS}} {{.CLI_ARGS}}
+
+    phpstan:tests:
+        desc: Run Phpstan for Tests code
+        cmds:
+            -   task: php-cli
+                vars:
+                    CLI_ARGS: vendor/bin/phpstan analyse --configuration=phpstan.tests.dist.neon {{.PINT_ARGS}} {{.CLI_ARGS}}
+
     lint:
         desc: Run linting
         cmds:
@@ -171,6 +191,9 @@ tasks:
                     printf "\n\033[0;36m\033[1mRunning Rector\033[0m\n\n"
                     task rector -- --dry-run
                 ignore_error: true
+            -   cmd: |
+                    printf "\n\033[0;36m\033[1mRunning Phpstan\033[0m\n\n"
+                    task phpstan
 
     lint:fix:
         desc: Run linting
@@ -181,6 +204,9 @@ tasks:
             -   cmd: |
                     printf "\n\033[0;36m\033[1mRunning Rector\033[0m\n\n"
                     task rector
+            -   cmd: |
+                    printf "\n\033[0;36m\033[1mRunning Phpstan\033[0m\n\n"
+                    task phpstan
 
     # Wrapper tasks
     install:
