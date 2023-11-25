@@ -146,6 +146,28 @@ tasks:
                 vars:
                     CLI_ARGS: ide-helper:models
 
+    pint:
+        desc: Run Pint
+        cmds:
+            -   task: php-cli
+                vars:
+                    CLI_ARGS: vendor/bin/pint {{.PINT_ARGS}} {{.CLI_ARGS}}
+
+    lint:
+        desc: Run linting
+        cmds:
+            -   cmd: |
+                    printf "\n\033[0;36m\033[1mRunning Pint\033[0m\n"
+                    task pint -- --test
+                ignore_error: true
+
+    lint:fix:
+        desc: Run linting
+        cmds:
+            -   cmd: |
+                    printf "\n\033[0;36m\033[1mRunning Pint\033[0m\n"
+                    task pint
+
     # Wrapper tasks
     install:
         desc: Install the project for the first time
