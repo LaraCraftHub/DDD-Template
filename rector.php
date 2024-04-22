@@ -6,7 +6,6 @@ use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\CodeQuality\Rector\MethodCall\AssertNotOperatorRector;
 use Rector\PHPUnit\CodeQuality\Rector\MethodCall\AssertSameBoolNullToSpecificMethodRector;
-use Rector\PHPUnit\Set\PHPUnitLevelSetList;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
@@ -34,17 +33,17 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
         SetList::TYPE_DECLARATION,
-        LevelSetList::UP_TO_PHP_82,
+        LevelSetList::UP_TO_PHP_83,  // FOR_UPGRADE
         // LARAVEL
         LaravelSetList::LARAVEL_CODE_QUALITY,
         //LaravelSetList::LARAVEL_STATIC_TO_INJECTION, // TODO: find a way to apply it only for infrastructure folder
         //LaravelSetList::LARAVEL_ELOQUENT_MAGIC_METHOD_TO_QUERY_BUILDER, User::find => User::query()->find
         LaravelSetList::LARAVEL_FACADE_ALIASES_TO_FULL_NAMES,
-        LaravelLevelSetList::UP_TO_LARAVEL_100,
+        LaravelLevelSetList::UP_TO_LARAVEL_110, // FOR_UPGRADE
         // PHPUNIT
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
-        PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
+        PHPUnitSetList::PHPUNIT_100,
     ]);
 
     $rectorConfig->rules([

@@ -8,6 +8,7 @@ use App\Application\Exceptions\InvalidMixedValueException;
 use App\Domain\Project\ProjectStatus;
 use App\Infrastructure\Project\ProjectStatusCast;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 use Tests\Builder\ProjectBuilder;
 use Tests\Unit\UnitTestCase;
 
@@ -15,6 +16,7 @@ final class ProjectStatusCastTest extends UnitTestCase
 {
     private ProjectStatusCast $sut;
 
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();

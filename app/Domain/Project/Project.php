@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Project;
 
-use App\Domain\BusinessEntity;
 use App\Domain\User\User;
 use App\Infrastructure\Project\EloquentProject;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Domain\Project\Project
@@ -28,18 +28,18 @@ use Illuminate\Database\Eloquent\Collection;
  * @property-read Collection<int, User> $users
  * @property-read int|null $users_count
  *
- * @mixin \Eloquent
+ * @mixin Model
  */
-class Project extends EloquentProject implements BusinessEntity
+class Project extends EloquentProject
 {
-    final public const STATUSES = [
+    final public const array STATUSES = [
         ProjectStatus::GENERATED,
         ProjectStatus::IN_PROGRESS,
         ProjectStatus::BLOCKED,
         ProjectStatus::TERMINATED,
     ];
 
-    final public const FINISHED_STATUSES = [
+    final public const array FINISHED_STATUSES = [
         ProjectStatus::BLOCKED,
         ProjectStatus::TERMINATED,
     ];

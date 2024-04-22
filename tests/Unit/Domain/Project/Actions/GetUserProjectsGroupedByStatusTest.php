@@ -10,6 +10,7 @@ use App\Domain\Project\Repositories\ProjectRepository;
 use Illuminate\Support\Collection;
 use Mockery;
 use Mockery\MockInterface;
+use Override;
 use Tests\Builder\ProjectBuilder;
 use Tests\Builder\UserBuilder;
 use Tests\Unit\UnitTestCase;
@@ -20,6 +21,7 @@ final class GetUserProjectsGroupedByStatusTest extends UnitTestCase
 
     private ProjectRepository&MockInterface $projectRepository;
 
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Facade;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
+use Override;
 use PHPUnit\Framework\TestCase;
 use Tests\Unit\Fakes\FakeLog;
 
@@ -30,6 +31,7 @@ abstract class UnitTestCase extends TestCase
     /**
      * @throws BindingResolutionException
      */
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -55,13 +57,13 @@ abstract class UnitTestCase extends TestCase
         Facade::setFacadeApplication($app);
     }
 
+    #[Override]
     protected function tearDown(): void
     {
         parent::tearDown();
         // Remove all cached service instances.
         Facade::clearResolvedInstances();
         // Remove the container instance from the Facade.
-        // @phpstan-ignore-next-line
         Facade::setFacadeApplication(null);
         // Remove the container instance singleton.
         Container::setInstance(null);

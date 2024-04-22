@@ -9,6 +9,7 @@ use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Routing\Middleware\ThrottleRequests;
+use Override;
 
 abstract class IntegrationTestCase extends BaseTestCase
 {
@@ -18,6 +19,7 @@ abstract class IntegrationTestCase extends BaseTestCase
 
     protected string $seeder = TestingSeeder::class;
 
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
@@ -25,6 +27,7 @@ abstract class IntegrationTestCase extends BaseTestCase
         $this->withoutMiddleware(ThrottleRequests::class);
     }
 
+    #[Override]
     public function createApplication()
     {
         $app = require __DIR__ . '/../../bootstrap/app.php';

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
-use App\Domain\BusinessEntity;
 use App\Domain\Project\Project;
 use App\Infrastructure\User\EloquentUser;
 use Carbon\CarbonImmutable;
@@ -16,10 +15,10 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
-use Laravel\Sanctum\PersonalAccessToken;
 
 /**
  * App\Models\User
@@ -37,14 +36,12 @@ use Laravel\Sanctum\PersonalAccessToken;
  * Eloquent relations
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read Collection<int, PersonalAccessToken> $tokens
- * @property-read int|null $tokens_count
  * @property-read Collection<int, Project> $projects
  * @property-read int|null $projects_count
  *
- * @mixin \Eloquent
+ * @mixin Model
  */
-class User extends EloquentUser implements AuthenticatableContract, AuthorizableContract, BusinessEntity, CanResetPasswordContract, MustVerifyEmailContract
+class User extends EloquentUser implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, MustVerifyEmailContract
 {
     use Authenticatable;
     use Authorizable;

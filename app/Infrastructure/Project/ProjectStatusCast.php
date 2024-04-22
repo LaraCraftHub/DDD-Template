@@ -8,6 +8,7 @@ use App\Application\Exceptions\InvalidMixedValueException;
 use App\Domain\Project\ProjectStatus;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 
 use function is_int;
 
@@ -23,6 +24,7 @@ final class ProjectStatusCast implements CastsAttributes
      *
      * @throws InvalidMixedValueException
      */
+    #[Override]
     public function get(Model $model, string $key, mixed $value, array $attributes): ProjectStatus
     {
         if (! is_int($value) || ! ProjectStatus::tryFrom($value) instanceof ProjectStatus) {
@@ -39,6 +41,7 @@ final class ProjectStatusCast implements CastsAttributes
      *
      * @throws InvalidMixedValueException
      */
+    #[Override]
     public function set(Model $model, string $key, mixed $value, array $attributes): int
     {
         if (! $value instanceof ProjectStatus) {

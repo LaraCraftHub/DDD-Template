@@ -9,6 +9,7 @@ use App\Domain\User\User;
 use BadMethodCallException;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
+use Override;
 use Tests\Builder\Stub\StubUser;
 
 final class UserBuilder implements ModelBuilder
@@ -45,6 +46,7 @@ final class UserBuilder implements ModelBuilder
         $this->projects = new Collection([]);
     }
 
+    #[Override]
     public function build(): User
     {
         $user = new StubUser();
@@ -66,6 +68,7 @@ final class UserBuilder implements ModelBuilder
         return $user;
     }
 
+    #[Override]
     public function withId(int $id): self
     {
         $this->id = $id;
@@ -73,6 +76,7 @@ final class UserBuilder implements ModelBuilder
         return $this;
     }
 
+    #[Override]
     public function withUuid(string $id): self
     {
         throw new BadMethodCallException('Project model does not use Uuids.');
@@ -99,7 +103,7 @@ final class UserBuilder implements ModelBuilder
         return $this;
     }
 
-    public function withProject(Project $project = null): self
+    public function withProject(?Project $project = null): self
     {
         $this->projects->push($project ?? (new ProjectBuilder())->build());
 
