@@ -8,7 +8,7 @@
         "php": "^8.2.11",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.28",
-        "laravel/sanctum": "^3.3",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8"
     },
     "require-dev": {
