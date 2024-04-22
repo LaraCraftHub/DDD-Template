@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\DatabaseNotification as DbNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Support\Collection;
+use Override;
 
 /**
  * Eloquent relations
@@ -22,6 +23,7 @@ final class StubUser extends User
     /** @phpstan-use StubModelOperation<Project> */
     use StubModelOperation;
 
+    #[Override]
     public function projects(): BelongsToMany
     {
         return $this->mockBelongsToMany($this->projects);

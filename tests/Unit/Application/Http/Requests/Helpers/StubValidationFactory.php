@@ -9,6 +9,7 @@ use Illuminate\Container\Container;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Contracts\Validation\Validator;
+use Override;
 
 final class StubValidationFactory implements Factory
 {
@@ -17,6 +18,7 @@ final class StubValidationFactory implements Factory
      * @param Closure|string $extension
      * @param string|null $message
      */
+    #[Override]
     public function extend($rule, $extension, $message = null): void
     {
     }
@@ -26,6 +28,7 @@ final class StubValidationFactory implements Factory
      * @param Closure|string $extension
      * @param string|null $message
      */
+    #[Override]
     public function extendImplicit($rule, $extension, $message = null): void
     {
     }
@@ -36,6 +39,7 @@ final class StubValidationFactory implements Factory
      * @param array<string, string> $messages
      * @param array<string, string> $attributes
      */
+    #[Override]
     public function make(array $data, array $rules, array $messages = [], array $attributes = []): Validator
     {
         $translator = new StubTranslator();
@@ -57,6 +61,7 @@ final class StubValidationFactory implements Factory
      * @param string $rule
      * @param Closure|string $replacer
      */
+    #[Override]
     public function replacer($rule, $replacer): void
     {
     }

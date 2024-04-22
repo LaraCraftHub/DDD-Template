@@ -2,7 +2,7 @@
 # Application
 # Build "laravel-ddd-php82" from ./docker/php-fpm
 #
-FROM laravel-ddd-php82
+FROM laravel-ddd-php83
 
 # Labels
 LABEL Maintainer="Abdelhamid Abouhassane <abdu.abou@gmail.com>"
@@ -44,16 +44,13 @@ RUN sed -i 's;access\.log = .*;access.log = /dev/null;' /usr/local/etc/php-fpm.d
     && mkfifo -m 666 /tmp/stderr \
 # Redirect error log to /tmp/stderr
     && sed -i 's;error\.log = .*;error_log = /tmp/stderr;' /usr/local/etc/php-fpm.d/docker.conf \
-# write build version
-    && sed -i "s;dev;${VERSION};" /var/www/html/config/version.php \
 # Finalize application optimizations
     && ./artisan optimize:clear --no-ansi --no-interaction \
     && ./artisan package:discover --no-ansi --no-interaction \
 # Apply permissions
     && chown -R www-data:www-data /var/www/html \
 # Display installation summary
-    && ./artisan --version --no-ansi --no-interaction \
-    && echo "Version: $(./artisan app:version)"
+    && ./artisan --version --no-ansi --no-interaction
 
 # Define entry point to re exec Laravel config cache
 ENTRYPOINT [ "/usr/local/bin/entrypoint" ]

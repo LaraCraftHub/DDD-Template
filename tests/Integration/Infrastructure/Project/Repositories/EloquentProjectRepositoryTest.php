@@ -7,12 +7,14 @@ namespace Tests\Integration\Infrastructure\Project\Repositories;
 use App\Domain\Project\Project;
 use App\Domain\Project\Repositories\ProjectRepository;
 use App\Domain\User\User;
+use Override;
 use Tests\Integration\IntegrationTestCase;
 
 final class EloquentProjectRepositoryTest extends IntegrationTestCase
 {
     private ProjectRepository $sut;
 
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();

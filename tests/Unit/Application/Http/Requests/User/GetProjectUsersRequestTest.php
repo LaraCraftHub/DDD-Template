@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Application\Http\Requests\User;
 
 use App\Application\Http\Requests\User\GetProjectUsersRequest;
+use Override;
 use Tests\Builder\ProjectBuilder;
 use Tests\Builder\UserBuilder;
 use Tests\Unit\Application\Http\Requests\Helpers\StubRepository;
@@ -103,6 +104,7 @@ final class GetProjectUsersRequestTest extends RequestTestCase
         );
     }
 
+    #[Override]
     protected function getRequestUnderTest(): string
     {
         return GetProjectUsersRequest::class;

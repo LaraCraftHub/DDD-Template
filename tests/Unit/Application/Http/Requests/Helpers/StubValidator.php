@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit\Application\Http\Requests\Helpers;
 
 use Illuminate\Validation\Validator;
+use Override;
 
 use function array_slice;
 use function is_array;
@@ -25,6 +26,7 @@ final class StubValidator extends Validator
      * @param mixed $value
      * @param array<int, int|string> $parameters
      */
+    #[Override]
     public function validateExists($attribute, $value, $parameters): bool
     {
         $columnId = $value;
@@ -48,6 +50,7 @@ final class StubValidator extends Validator
      * @param string $value
      * @param array<int, int|string> $parameters
      */
+    #[Override]
     public function validateUnique($attribute, $value, $parameters): bool
     {
         $tableName = $parameters[0] ?? '';

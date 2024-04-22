@@ -5,14 +5,14 @@ inputs:
   php-version:
     description: 'PHP Version'
     required: false
-    default: '8.2.11'
+    default: '8.3.0'
 
 runs:
   using: "composite"
   steps:
     - name: Cache Composer packages
       id: composer-cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: vendor
         key: composer-${{ hashFiles('composer.lock') }}

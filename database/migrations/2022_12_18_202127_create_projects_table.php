@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->unsignedInteger('status');
-            $table->unsignedFloat('funds')->comment('in euro');
+            $table->float('funds')->unsigned()->comment('in euro');
             $table->timestamp('started_at')->nullable();
             $table->timestamp('blocked_at')->nullable();
             $table->timestamp('terminated_at')->nullable();
