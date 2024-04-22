@@ -6,6 +6,7 @@ namespace Tests\Unit\Application\Http\Requests\Project;
 
 use App\Application\Http\Requests\Project\GetUserProjectsRequest;
 use App\Domain\Project\ProjectStatus;
+use Override;
 use Tests\Builder\UserBuilder;
 use Tests\Unit\Application\Http\Requests\Helpers\StubRepository;
 use Tests\Unit\Application\Http\Requests\RequestTestCase;
@@ -61,6 +62,7 @@ final class GetUserProjectsRequestTest extends RequestTestCase
         $this->assertTrue($this->validateParameters($params));
     }
 
+    #[Override]
     protected function getRequestUnderTest(): string
     {
         return GetUserProjectsRequest::class;

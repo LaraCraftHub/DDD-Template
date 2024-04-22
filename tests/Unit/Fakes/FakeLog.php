@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Fakes;
 
+use Override;
 use Psr\Log\LoggerInterface;
 
 class FakeLog implements LoggerInterface
@@ -37,6 +38,7 @@ class FakeLog implements LoggerInterface
     /**
      * @param string $message
      */
+    #[Override]
     public function emergency($message, array $context = []): void
     {
         $this->log('emergency', $message, $context);
@@ -45,6 +47,7 @@ class FakeLog implements LoggerInterface
     /**
      * @param string $message
      */
+    #[Override]
     public function alert($message, array $context = []): void
     {
         $this->log('alert', $message, $context);
@@ -53,6 +56,7 @@ class FakeLog implements LoggerInterface
     /**
      * @param string $message
      */
+    #[Override]
     public function critical($message, array $context = []): void
     {
         $this->log('critical', $message, $context);
@@ -61,6 +65,7 @@ class FakeLog implements LoggerInterface
     /**
      * @param string $message
      */
+    #[Override]
     public function error($message, array $context = []): void
     {
         $this->log('error', $message, $context);
@@ -69,6 +74,7 @@ class FakeLog implements LoggerInterface
     /**
      * @param string $message
      */
+    #[Override]
     public function warning($message, array $context = []): void
     {
         $this->log('warning', $message, $context);
@@ -77,6 +83,7 @@ class FakeLog implements LoggerInterface
     /**
      * @param string $message
      */
+    #[Override]
     public function notice($message, array $context = []): void
     {
         $this->log('notice', $message, $context);
@@ -85,6 +92,7 @@ class FakeLog implements LoggerInterface
     /**
      * @param string $message
      */
+    #[Override]
     public function info($message, array $context = []): void
     {
         $this->log('info', $message, $context);
@@ -93,6 +101,7 @@ class FakeLog implements LoggerInterface
     /**
      * @param string $message
      */
+    #[Override]
     public function debug($message, array $context = []): void
     {
         $this->log('debug', $message, $context);
@@ -102,6 +111,7 @@ class FakeLog implements LoggerInterface
      * @param string $level
      * @param string $message
      */
+    #[Override]
     public function log($level, $message, array $context = []): void
     {
         $this->log[$level][] = [

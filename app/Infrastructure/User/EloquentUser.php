@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Override;
 
 /**
  * App\Infrastructure\User\EloquentUser
@@ -40,7 +40,6 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class EloquentUser extends Model
 {
-    use HasApiTokens;
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
@@ -48,7 +47,7 @@ class EloquentUser extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'name',
@@ -67,16 +66,6 @@ class EloquentUser extends Model
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'immutable_datetime',
-        'password' => 'hashed',
-    ];
-
-    /**
      * @return BelongsToMany<Project>
      */
     public function projects(): BelongsToMany
@@ -92,5 +81,19 @@ class EloquentUser extends Model
     protected static function newFactory(): UserFactory
     {
         return UserFactory::new();
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'immutable_datetime',
+            'password' => 'hashed',
+        ];
     }
 }

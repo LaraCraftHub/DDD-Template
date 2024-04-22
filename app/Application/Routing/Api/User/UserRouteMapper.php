@@ -7,9 +7,11 @@ namespace App\Application\Routing\Api\User;
 use App\Application\Http\Controllers\Api\Project\GetUserProjectsByStatusController;
 use App\Application\Routing\RouteMapper;
 use Illuminate\Routing\Router;
+use Override;
 
 final class UserRouteMapper implements RouteMapper
 {
+    #[Override]
     public function map(Router $router): void
     {
         $router->group([

@@ -15,7 +15,7 @@ use function is_scalar;
 
 final class InvalidMixedValueException extends Exception
 {
-    private const DEFAULT_ARRAY_DEPTH = 20;
+    private const int DEFAULT_ARRAY_DEPTH = 20;
 
     public function __construct(string $message, mixed $value)
     {

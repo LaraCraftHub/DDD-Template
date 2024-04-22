@@ -8,9 +8,11 @@ use App\Domain\User\Repositories\UserRepository;
 use App\Infrastructure\User\Repositories\EloquentUserRepository;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
+use Override;
 
 final class UserServiceProvider extends ServiceProvider implements DeferrableProvider
 {
+    #[Override]
     public function register(): void
     {
         $this->app->singleton(UserRepository::class, EloquentUserRepository::class);
@@ -19,6 +21,7 @@ final class UserServiceProvider extends ServiceProvider implements DeferrablePro
     /**
      * @return array<class-string>
      */
+    #[Override]
     public function provides(): array
     {
         return [EloquentUserRepository::class];

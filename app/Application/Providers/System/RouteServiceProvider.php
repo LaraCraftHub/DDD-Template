@@ -8,6 +8,7 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Override;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -18,11 +19,12 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    final public const HOME = '/home';
+    final public const string HOME = '/home';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
+    #[Override]
     public function boot(): void
     {
         $this->configureRateLimiting();

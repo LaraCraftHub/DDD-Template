@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Override;
 
 /**
  * App\Infrastructure\Project\EloquentProject
@@ -48,7 +49,7 @@ class EloquentProject extends Model
         'status' => ProjectStatus::GENERATED,
     ];
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'title',
         'status',
@@ -56,14 +57,6 @@ class EloquentProject extends Model
         'started_at',
         'blocked_at',
         'terminated_at',
-    ];
-
-    /** @var array<string, class-string|string> */
-    protected $casts = [
-        'status' => ProjectStatusCast::class,
-        'started_at' => 'immutable_datetime',
-        'blocked_at' => 'immutable_datetime',
-        'terminated_at' => 'immutable_datetime',
     ];
 
     /**
@@ -82,5 +75,21 @@ class EloquentProject extends Model
     protected static function newFactory(): ProjectFactory
     {
         return ProjectFactory::new();
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function casts(): array
+    {
+        return [
+            'status' => ProjectStatusCast::class,
+            'started_at' => 'immutable_datetime',
+            'blocked_at' => 'immutable_datetime',
+            'terminated_at' => 'immutable_datetime',
+        ];
     }
 }

@@ -13,12 +13,14 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Routing\UrlGenerator;
+use Override;
 use Tests\Unit\Application\Http\Requests\Helpers\StubRepository;
 use Tests\Unit\Application\Http\Requests\Helpers\StubValidationFactory;
 use Tests\Unit\UnitTestCase;
 
 abstract class RequestTestCase extends UnitTestCase
 {
+    #[Override]
     protected function setUp(): void
     {
         parent::setUp();
