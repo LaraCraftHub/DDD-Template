@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Application\Providers;
 
-use Override;
 use App\Domain\Common\Email\EmailRenderer;
 use App\Domain\Common\Event\EventDispatcher;
 use App\Domain\Common\StringSluggifierInterface;
@@ -14,6 +13,7 @@ use App\Infrastructure\Common\Event\LaravelEventDispatcher;
 use App\Infrastructure\Common\StringSluggifier;
 use App\Infrastructure\Common\Time\SystemSleeper;
 use Illuminate\Support\ServiceProvider;
+use Override;
 use Psr\Clock\ClockInterface;
 use Symfony\Component\Clock\NativeClock;
 use Symfony\Component\Uid\Factory\RandomBasedUuidFactory;

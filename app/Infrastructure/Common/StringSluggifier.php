@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Common;
 
-use Override;
 use App\Domain\Common\StringSluggifierInterface;
 use Illuminate\Support\Str;
+use Override;
 
 final class StringSluggifier implements StringSluggifierInterface
 {

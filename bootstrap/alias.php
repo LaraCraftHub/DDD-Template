@@ -7,7 +7,7 @@ declare(strict_types=1);
 | Create global class aliases
 |--------------------------------------------------------------------------
 |
-| @see https://backend-guidelines.playplay.dev/laravel/collections
+| @see https://laravel-ddd-guidelines.dev/laravel/collections
 |
 */
 

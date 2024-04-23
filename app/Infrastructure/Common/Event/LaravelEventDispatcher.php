@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Common\Event;
 
-use Override;
 use App\Domain\Common\Event\Event;
 use App\Domain\Common\Event\EventDispatcher;
 use Illuminate\Contracts\Events\Dispatcher;
+use Override;
 
 final readonly class LaravelEventDispatcher implements EventDispatcher
 {

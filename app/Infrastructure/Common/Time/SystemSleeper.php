@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Common\Time;
 
-use Override;
 use App\Domain\Common\Time\Sleeper;
+use Override;
 
 final readonly class SystemSleeper implements Sleeper
 {

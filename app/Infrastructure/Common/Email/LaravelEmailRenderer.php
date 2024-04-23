@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Common\Email;
 
-use Override;
 use App\Domain\Common\Email\EmailRenderer;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Mail\Markdown;
+use Override;
 
 final readonly class LaravelEmailRenderer implements EmailRenderer
 {
