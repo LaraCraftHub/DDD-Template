@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Providers;
 
+use Override;
 use App\Domain\Common\Email\EmailRenderer;
 use App\Domain\Common\Event\EventDispatcher;
 use App\Domain\Common\StringSluggifierInterface;
@@ -22,6 +23,7 @@ use Symfony\Component\Uid\UuidV7;
 
 final class CommonProvider extends ServiceProvider
 {
+    #[Override]
     public function register(): void
     {
         $this->app->bind(StringSluggifierInterface::class, StringSluggifier::class);

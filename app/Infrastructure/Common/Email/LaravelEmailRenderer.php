@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Common\Email;
 
+use Override;
 use App\Domain\Common\Email\EmailRenderer;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Mail\Markdown;
@@ -14,11 +15,13 @@ final readonly class LaravelEmailRenderer implements EmailRenderer
     {
     }
 
+    #[Override]
     public function render(string $templateView, array $data): string
     {
         return $this->viewFactory->make($templateView, $data)->render();
     }
 
+    #[Override]
     public function renderWithMarkdown(string $templateView, array $data): string
     {
         return $this->markdownRenderer->render($templateView, $data)->toHtml();

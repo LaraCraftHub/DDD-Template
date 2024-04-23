@@ -8,7 +8,7 @@ use DomainException;
 
 final class ValidationException extends DomainException
 {
-    private array $messages;
+    private readonly array $messages;
 
     private function __construct(array $messages)
     {

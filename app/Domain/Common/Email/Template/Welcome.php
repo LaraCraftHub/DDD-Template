@@ -54,6 +54,6 @@ final readonly class Welcome
         $token = $this->passwordBroker->createToken($user);
         $email = http_build_query(['email' => $user->email]);
 
-        return $this->urlGenerator->to("/app/password/create/{$token}?{$email}");
+        return $this->urlGenerator->to(sprintf('/app/password/create/%s?%s', $token, $email));
     }
 }
