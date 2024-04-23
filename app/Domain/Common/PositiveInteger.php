@@ -11,7 +11,7 @@ final readonly class PositiveInteger
     private function __construct(public int $value)
     {
         if ($value < 0) {
-            throw ValidationException::fromMessage(sprintf('The given value (%d) must be a positive integer.', $value));
+            throw ValidationException::fromMessage("The given value $this->value must be a positive integer.");
         }
     }
 

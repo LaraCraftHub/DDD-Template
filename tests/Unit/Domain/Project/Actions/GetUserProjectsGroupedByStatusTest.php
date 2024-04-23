@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace tests\Unit\Domain\Project\Actions;
 
+use App\Alias\EloquentCollection;
 use App\Domain\Project\Actions\GetUserProjectsGroupedByStatus;
 use App\Domain\Project\ProjectStatus;
 use App\Domain\Project\Repositories\ProjectRepository;
@@ -52,7 +53,7 @@ final class GetUserProjectsGroupedByStatusTest extends UnitTestCase
         $this->projectRepository
             ->shouldReceive('getAllUserProjectsWithTrashedOnes')
             ->andReturn(
-                new Collection([
+                new EloquentCollection([
                     $generatedProject,
                     $progressingProject,
                     $progressingDeletedProject,

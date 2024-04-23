@@ -18,7 +18,7 @@ final readonly class EmailAddress
     {
         self::validateEmail($email);
 
-        return new self(sprintf('%s <%s>', $name, $email));
+        return new self("$name $email");
     }
 
     public static function fromEmail(string $email): self
@@ -40,7 +40,9 @@ final readonly class EmailAddress
     private static function validateEmail(string $email): void
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            throw new InvalidArgumentException(sprintf('The email \'%s\' is invalid, you must provide a valid email address', $email));
+            throw new InvalidArgumentException(
+                "The email $email is invalid, you must provide a valid email address"
+            );
         }
     }
 }
