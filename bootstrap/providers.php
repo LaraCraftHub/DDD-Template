@@ -21,6 +21,7 @@ return [
     /*
      * Domain Service Providers...
      */
+    App\Application\Providers\CommonProvider::class,
     App\Application\Providers\Project\ProjectServiceProvider::class,
     App\Application\Providers\User\UserServiceProvider::class,
 ];

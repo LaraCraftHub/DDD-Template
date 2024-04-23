@@ -1,0 +1,16 @@
+parameters:
+    disallowedFunctionCalls:
+        -
+            function: 'now()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/clock'
+        -
+            function: 'time()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/clock'
+
+    disallowedStaticCalls:
+        -
+            method: 'Carbon\Carbon::now()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/clock'
+
+rules:
+    - Quality\PHPStan\Architecture\ClockRule
