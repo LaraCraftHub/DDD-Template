@@ -6,5 +6,8 @@ namespace App\Domain\Common\WebSocket;
 
 interface WebSocketMessage
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array;
 }

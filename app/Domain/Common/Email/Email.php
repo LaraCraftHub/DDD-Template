@@ -14,6 +14,9 @@ final readonly class Email
     ) {
     }
 
+    /**
+     * @return array{email_to: string, email_from: string, content: string, subject: string}
+     */
     public function toArray(): array
     {
         return [

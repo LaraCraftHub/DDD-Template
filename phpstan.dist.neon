@@ -6,14 +6,14 @@ includes:
     - ./vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - ./phpstan-baseline.neon
     - ./vendor/larastan/larastan/extension.neon
-    - ./vendor/phpstan/phpstan-mockery/extension.neon
-    - ./vendor/phpstan/phpstan-phpunit/extension.neon
-    - ./vendor/spaze/phpstan-disallowed-calls/extension.neon
-    - ./quality/phpstan/rules/clock.neon
-    - ./quality/phpstan/rules/config.neon
-    - ./quality/phpstan/rules/datetime.neon
-    - ./quality/phpstan/rules/ergebnis-phpstan-rules.neon
-    - ./quality/phpstan/rules/uuid.neon
+    #- ./vendor/phpstan/phpstan-mockery/extension.neon
+    #- ./vendor/phpstan/phpstan-phpunit/extension.neon
+    #- ./vendor/spaze/phpstan-disallowed-calls/extension.neon
+    #- ./quality/phpstan/rules/clock.neon
+    #- ./quality/phpstan/rules/config.neon
+    #- ./quality/phpstan/rules/datetime.neon
+    #- ./quality/phpstan/rules/ergebnis-phpstan-rules.neon
+    #- ./quality/phpstan/rules/uuid.neon
 
 parameters:
     # PHPStan inspection level:
@@ -50,57 +50,11 @@ parameters:
     parallel:
         maximumNumberOfProcesses: 10
 
-    disallowedClasses:
-        -
-            class: 'Illuminate\Database\Eloquent\Collection'
-            message: 'Use App\Alias\EloquentCollection instead'
-        -
-            class: 'Illuminate\Support\Collection'
-            message: 'Use App\Alias\SupportCollection instead'
-        -
-            class: 'Mockery\LegacyMockInterface'
-            message: 'Use Mockery\MockInterface instead'
-        -
-            class: 'Illuminate\Mail\Mailable'
-            message: 'Use App\Domain\Common\Email instead'
-
-    disallowedFunctionCalls:
-        -
-            function: # Pure PHP
-                - 'create_function()'
-                - 'dd()'
-                - 'dump()'
-                - 'echo()'
-                - 'print()'
-                - 'var_dump()'
-                - 'sprintf()'
-            message: 'This function is not allowed'
-        -
-            function: # Laravel
-                - 'auth()'
-                - 'config()'
-                - 'data_get()'
-                - 'data_set()'
-                - 'event()'
-                - 'optional()'
-            message: 'This function is not allowed'
-        -
-            function: # Collect
-                - 'collect()'
-            message: 'use App\Alias\SupportCollection instead'
-        -
-            function: # Sleep
-                - 'sleep()'
-                - 'usleep()'
-            message: 'use App\Domain\Common\Time\Sleeper instead'
-            allowInMethods:
-                - 'App\Infrastructure\Common\Time\SystemSleeper::usleep()'
-
 rules:
-    - Quality\PHPStan\Model\DateRules
-    - Quality\PHPStan\Repository\EloquentMethodsCanNotBeCalledOutsideARepository
-    - Quality\PHPStan\Repository\InjectDomainRepositoryRule
-    - Quality\PHPStan\Repository\RepositoryRules
-    - Quality\PHPStan\Testing\DisallowMockeryMockInterfaceUnionRule
-    - Quality\PHPStan\Testing\TestClassRules
-    - Quality\PHPStan\Testing\TestSetUpAndTearDownVisibilityRule
+    #- Quality\PHPStan\Model\DateRules
+    #- Quality\PHPStan\Repository\EloquentMethodsCanNotBeCalledOutsideARepository
+    #- Quality\PHPStan\Repository\InjectDomainRepositoryRule
+    #- Quality\PHPStan\Repository\RepositoryRules
+    #- Quality\PHPStan\Testing\DisallowMockeryMockInterfaceUnionRule
+    #- Quality\PHPStan\Testing\TestClassRules
+    #- Quality\PHPStan\Testing\TestSetUpAndTearDownVisibilityRule

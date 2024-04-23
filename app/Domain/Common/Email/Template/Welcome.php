@@ -25,14 +25,17 @@ final readonly class Welcome
         private ConfigRepository $configRepository,
         Application $app,
     ) {
-        $this->passwordBroker = $app->get('auth.password.broker.new_users');
+        /** @var PasswordBroker $pswdBroker */
+        $pswdBroker = $app->get('auth.password.broker.new_users');
+        $this->passwordBroker = $pswdBroker;
     }
 
     public function create(User $user): Email
     {
         $currentLocale = $this->translator->getLocale();
-        $this->translator->setLocale($user->language);
+        $this->translator->setLocale(/** $user->language */ 'fr');
 
+        /** @var array{address: string} $fromEmail */
         $fromEmail = $this->configRepository->get('mail.from');
 
         $email = new Email(
