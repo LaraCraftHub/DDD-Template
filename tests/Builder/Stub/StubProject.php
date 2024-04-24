@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Tests\Builder\Stub;
 
+use App\Alias\SupportCollection;
 use App\Domain\Project\Project;
 use App\Domain\User\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Collection;
 use Override;
 
 /**
  * Eloquent relations
  *
- * @property Collection<int, User> $users
+ * @property SupportCollection<int, User> $users
  */
 final class StubProject extends Project
 {

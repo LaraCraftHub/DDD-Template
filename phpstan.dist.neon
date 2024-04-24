@@ -6,8 +6,8 @@ includes:
     - ./vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - ./phpstan-baseline.neon
     - ./vendor/larastan/larastan/extension.neon
-    #- ./vendor/phpstan/phpstan-mockery/extension.neon
-    #- ./vendor/phpstan/phpstan-phpunit/extension.neon
+    - ./vendor/phpstan/phpstan-mockery/extension.neon
+    - ./vendor/phpstan/phpstan-phpunit/extension.neon
     - ./vendor/spaze/phpstan-disallowed-calls/extension.neon
     #- ./quality/phpstan/rules/clock.neon
     #- ./quality/phpstan/rules/config.neon

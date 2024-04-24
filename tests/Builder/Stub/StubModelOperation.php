@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Builder\Stub;
 
+use App\Alias\SupportCollection;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
 use Mockery;
 
 use function array_key_exists;
@@ -79,10 +79,10 @@ trait StubModelOperation
     }
 
     /**
-     * @param Collection<int, StubModel> $expectedValue
+     * @param SupportCollection<int, StubModel> $expectedValue
      * @return HasMany<StubModel>
      */
-    public function mockHasMany(Collection $expectedValue): HasMany
+    public function mockHasMany(SupportCollection $expectedValue): HasMany
     {
         $eloquentBuilder = Mockery::spy(EloquentBuilder::class);
 
@@ -97,10 +97,10 @@ trait StubModelOperation
     }
 
     /**
-     * @param Collection<int, StubModel> $expectedValue
+     * @param SupportCollection<int, StubModel> $expectedValue
      * @return BelongsToMany<StubModel>
      */
-    public function mockBelongsToMany(Collection $expectedValue): BelongsToMany
+    public function mockBelongsToMany(SupportCollection $expectedValue): BelongsToMany
     {
         $eloquentBuilder = Mockery::spy(EloquentBuilder::class);
 

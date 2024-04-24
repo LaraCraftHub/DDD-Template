@@ -10,6 +10,7 @@ final class SlowParallelExample2Test extends IntegrationTestCase
 {
     public function test_true_is_true(): void
     {
+        // @phpstan-ignore-next-line
         sleep(20);
         // @phpstan-ignore-next-line
         $this->assertTrue(true);
