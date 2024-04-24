@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tests\Builder;
 
+use App\Alias\SupportCollection;
 use App\Domain\Project\Project;
 use App\Domain\Project\ProjectStatus;
 use App\Domain\User\User;
 use BadMethodCallException;
 use Carbon\CarbonImmutable;
-use Illuminate\Support\Collection;
 use Override;
 use Tests\Builder\Stub\StubProject;
 
@@ -37,8 +37,8 @@ final class ProjectBuilder implements ModelBuilder
 
     /** Relationships */
 
-    /** @var Collection<int, User> */
-    private Collection $users;
+    /** @var SupportCollection<int, User> */
+    private SupportCollection $users;
 
     public function __construct()
     {
@@ -46,7 +46,7 @@ final class ProjectBuilder implements ModelBuilder
         $this->updated_at = CarbonImmutable::now();
 
         /** Relationships */
-        $this->users = new Collection([]);
+        $this->users = new SupportCollection([]);
     }
 
     #[Override]

@@ -1,12 +1,25 @@
+# /!\ Do not globally exclude paths and do not globally ignore errors please /!\
+# Firstly, please ask for advice on Slack if you don't know how to fix an error
+# Secondly, if ignoring an error is the only viable option, add a @phpstan-ignore annotation just where it's needed
+# so that new code doesn't inherit wrongfully ignored errors
 includes:
+    - ./vendor/phpstan/phpstan/conf/bleedingEdge.neon
     - ./phpstan-baseline.neon
-    - ./vendor/nunomaduro/larastan/extension.neon
-    - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
-    - phar://phpstan.phar/conf/bleedingEdge.neon
+    - ./vendor/larastan/larastan/extension.neon
+    - ./vendor/phpstan/phpstan-mockery/extension.neon
+    - ./vendor/phpstan/phpstan-phpunit/extension.neon
+    - ./vendor/spaze/phpstan-disallowed-calls/extension.neon
+    - ./quality/phpstan/rules/clock.neon
+    - ./quality/phpstan/rules/config.neon
+    - ./quality/phpstan/rules/datetime.neon
+    - ./quality/phpstan/rules/ergebnis-phpstan-rules.neon
+    - ./quality/phpstan/rules/uuid.neon
 
 parameters:
     # PHPStan inspection level:
     level: 9
+
+    tmpDir: .cache/phpstan/main
 
     # Larastan configuration
     checkModelProperties: true
@@ -14,21 +27,80 @@ parameters:
     noModelMake: true
     databaseMigrationsPath:
         - database/migrations
-        - database/migrations/live
 
     # Open error in IDE
     editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
 
     # Paths analysed
-    # Analyse only files in DDD iteration
+    # Analyse only files in new DDD iteration (not legacy)
+    # Tests unit|integration are not analysed as they launch a lot of noise and are not
+    # "critical" in first iteration due to mocks, frameworks, etc.
+    # May use PHPStan extensions https://phpstan.org/user-guide/extension-library.
     paths:
         - app/Domain
         - app/Application
         - app/Infrastructure
+        - tests/
 
-    excludePaths:
-        - app/Console/Commands/OneShot
+    # Others rules configurations
+    checkMissingIterableValueType: true
+    inferPrivatePropertyTypeFromConstructor: true
 
     # PHPStan process configuration
     parallel:
         maximumNumberOfProcesses: 10
+
+    disallowedClasses:
+        -
+            class: 'Illuminate\Database\Eloquent\Collection'
+            message: 'Use App\Alias\EloquentCollection instead'
+        -
+            class: 'Illuminate\Support\Collection'
+            message: 'Use App\Alias\SupportCollection instead'
+        -
+            class: 'Mockery\LegacyMockInterface'
+            message: 'Use Mockery\MockInterface instead'
+        -
+            class: 'Illuminate\Mail\Mailable'
+            message: 'Use App\Domain\Common\Email instead'
+
+    disallowedFunctionCalls:
+        -
+            function: # Pure PHP
+                - 'create_function()'
+                - 'dd()'
+                - 'dump()'
+                - 'echo()'
+                - 'print()'
+                - 'var_dump()'
+                - 'sprintf()'
+            message: 'This function is not allowed'
+        -
+            function: # Laravel
+                - 'auth()'
+                - 'config()'
+                - 'data_get()'
+                - 'data_set()'
+                - 'event()'
+                - 'optional()'
+            message: 'This function is not allowed'
+        -
+            function: # Collect
+                - 'collect()'
+            message: 'use App\Alias\SupportCollection instead'
+        -
+            function: # Sleep
+                - 'sleep()'
+                - 'usleep()'
+            message: 'use App\Domain\Common\Time\Sleeper instead'
+            allowInMethods:
+                - 'App\Infrastructure\Common\Time\SystemSleeper::usleep()'
+
+rules:
+    #- Quality\PHPStan\Model\DateRules // TODO fix it
+    - Quality\PHPStan\Repository\EloquentMethodsCanNotBeCalledOutsideARepository
+    - Quality\PHPStan\Repository\InjectDomainRepositoryRule
+    - Quality\PHPStan\Repository\RepositoryRules
+    - Quality\PHPStan\Testing\DisallowMockeryMockInterfaceUnionRule
+    - Quality\PHPStan\Testing\TestClassRules
+    - Quality\PHPStan\Testing\TestSetUpAndTearDownVisibilityRule

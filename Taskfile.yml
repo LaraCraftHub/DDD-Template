@@ -199,14 +199,14 @@ tasks:
         cmds:
             -   task: php-cli
                 vars:
-                    CLI_ARGS: vendor/bin/phpstan analyse {{.PINT_ARGS}} {{.CLI_ARGS}}
+                    CLI_ARGS: vendor/bin/phpstan analyse ./app {{.PINT_ARGS}} {{.CLI_ARGS}}
 
     phpstan:tests:
         desc: Run Phpstan for Tests code
         cmds:
             -   task: php-cli
                 vars:
-                    CLI_ARGS: vendor/bin/phpstan analyse --configuration=phpstan.tests.dist.neon {{.PINT_ARGS}} {{.CLI_ARGS}}
+                    CLI_ARGS: vendor/bin/phpstan analyse --level=7 ./tests {{.PINT_ARGS}} {{.CLI_ARGS}}
 
     lint:
         desc: Run linting

@@ -1,0 +1,5 @@
+parameters:
+    disallowedClasses:
+        -
+            class: 'DateTime'
+            message: 'use \DateTimeImmutable instead'

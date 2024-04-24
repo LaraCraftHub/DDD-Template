@@ -13,12 +13,13 @@
         "barryvdh/laravel-ide-helper": "^3.0",
         "brianium/paratest": "^7.4",
         "driftingly/rector-laravel": "^1.1.0",
+        "ergebnis/phpstan-rules": "^2.2",
         "fakerphp/faker": "^1.23.0",
+        "larastan/larastan": "^2.9",
         "laravel/pint": "^1.15",
         "laravel/sail": "^1.29.0",
         "mockery/mockery": "^1.6.11",
         "nunomaduro/collision": "^v8.1.0",
-        "nunomaduro/larastan": "^2.9",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "phpstan/phpstan-mockery": "^1.1",
@@ -26,16 +27,19 @@
         "phpunit/phpunit": "^10.5.0",
         "rector/rector": "^1.0.4",
         "roave/security-advisories": "dev-latest",
-        "spatie/laravel-ignition": "^2.0"
+        "spatie/laravel-ignition": "^2.0",
+        "spaze/phpstan-disallowed-calls": "^3.2"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Quality\\PHPStan\\": "quality/phpstan/src/"
         },
         "files": [
-            "app/helpers.php"
+            "app/helpers.php",
+            "bootstrap/alias.php"
         ]
     },
     "autoload-dev": {

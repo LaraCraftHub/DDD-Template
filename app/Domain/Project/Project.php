@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domain\Project;
 
+use App\Alias\EloquentCollection;
 use App\Domain\User\User;
 use App\Infrastructure\Project\EloquentProject;
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property CarbonImmutable|null $updated_at
  *
  * Eloquent relations
- * @property-read Collection<int, User> $users
+ * @property-read EloquentCollection<int, User> $users
  * @property-read int|null $users_count
  *
  * @mixin Model

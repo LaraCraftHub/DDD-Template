@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Tests\Unit\Application\Exceptions;
 
 use App\Application\Exceptions\InvalidMixedValueException;
-use PHPUnit\Framework\TestCase;
 use stdClass;
+use Tests\Unit\UnitTestCase;
 
-class InvalidMixedValueExceptionTest extends TestCase
+class InvalidMixedValueExceptionTest extends UnitTestCase
 {
     public function test_exception_message_replacement_for_integer(): void
     {

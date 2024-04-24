@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
+use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
+use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\CodeQuality\Rector\MethodCall\AssertNotOperatorRector;
 use Rector\PHPUnit\CodeQuality\Rector\MethodCall\AssertSameBoolNullToSpecificMethodRector;
@@ -25,6 +27,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->cacheDirectory('./.cache/rector');
 
     $rectorConfig->importNames();
+    $rectorConfig->removeUnusedImports();
 
     $rectorConfig->sets([
         // PHP
@@ -59,6 +62,8 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->skip([
         // PHP
+        EncapsedStringsToSprintfRector::class,
+        WrapEncapsedVariableInCurlyBracesRector::class,
         // PHPUNIT
     ]);
 };

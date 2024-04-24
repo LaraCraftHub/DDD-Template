@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
+use App\Alias\EloquentCollection;
 use App\Domain\Project\Project;
 use App\Infrastructure\User\EloquentUser;
 use Carbon\CarbonImmutable;
@@ -14,7 +15,6 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\DatabaseNotification;
@@ -36,7 +36,7 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
  * Eloquent relations
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read Collection<int, Project> $projects
+ * @property-read EloquentCollection<int, Project> $projects
  * @property-read int|null $projects_count
  *
  * @mixin Model

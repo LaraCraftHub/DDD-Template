@@ -1,0 +1,21 @@
+parameters:
+    disallowedFunctionCalls:
+        -
+            function: 'config()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/config'
+
+    disallowedClasses:
+        -
+            class: 'Illuminate\Support\Facades\Config'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/config'
+
+    disallowedNamespaces:
+        -
+            namespace: 'Illuminate\Config\*'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/config'
+        -
+            namespace: 'Illuminate\Contracts\Config\*'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/config'
+            allowIn:
+                - tests/Integration/IntegrationTestCase.php
+                - tests/Unit/UnitTestCase.php

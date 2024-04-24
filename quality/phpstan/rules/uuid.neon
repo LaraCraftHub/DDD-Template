@@ -1,0 +1,35 @@
+parameters:
+    disallowedNamespaces:
+        -
+            namespace: 'Ramsey\Uuid\*'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/uuid'
+
+    disallowedMethodCalls:
+        -
+            method: 'Symfony\Component\Uid\Uuid::__construct()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/uuid'
+            allowIn:
+                - tests/*
+        -
+            method: 'Symfony\Component\Uid\Factory\RandomBasedUuidFactory::__construct()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/uuid'
+            allowIn:
+                - app/Application/Providers/CommonProvider.php
+                - tests/*
+        -
+            method: 'Symfony\Component\Uid\Factory\TimeBasedUuidFactory::__construct()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/uuid'
+            allowIn:
+                - app/Application/Providers/CommonProvider.php
+                - tests/*
+        -
+            method: 'Faker\Generator::uuid()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/uuid'
+
+    disallowedStaticCalls:
+        -
+            method: 'Illuminate\Support\Str::uuid()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/uuid'
+        -
+            method: 'Symfony\Component\Uid\Uuid::v*()'
+            message: 'please read https://laravel-ddd-guidelines.dev/architecture/uuid'
