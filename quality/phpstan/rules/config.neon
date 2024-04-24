@@ -13,13 +13,9 @@ parameters:
         -
             namespace: 'Illuminate\Config\*'
             message: 'please read https://laravel-ddd-guidelines.dev/architecture/config'
-            allowIn:
-                - app/* # will be removed later
-                - tests/Unit/* # will be removed later
         -
             namespace: 'Illuminate\Contracts\Config\*'
             message: 'please read https://laravel-ddd-guidelines.dev/architecture/config'
             allowIn:
                 - tests/Integration/IntegrationTestCase.php
-                - app/* # will be removed later
-                - tests/Unit/* # will be removed later
+                - tests/Unit/UnitTestCase.php

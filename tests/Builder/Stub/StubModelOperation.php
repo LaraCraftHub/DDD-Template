@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Tests\Builder\Stub;
 
 use App\Alias\SupportCollection;
+use DateInterval;
+use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -32,7 +34,8 @@ trait StubModelOperation
     public function update(array $attributes = [], array $options = []): bool
     {
         if (! array_key_exists('updated_at', $attributes)) {
-            $this->setAttribute('updated_at', now()->addSeconds(5));
+            $nowPlus5Seconds = (new DateTimeImmutable())->add(new DateInterval('PT5S'));
+            $this->setAttribute('updated_at', $nowPlus5Seconds);
         }
 
         foreach ($attributes as $attribute => $value) {
@@ -73,7 +76,7 @@ trait StubModelOperation
 
     public function delete(): bool
     {
-        $this->attributes['deleted_at'] = now();
+        $this->attributes['deleted_at'] = new DateTimeImmutable();
 
         return true;
     }
