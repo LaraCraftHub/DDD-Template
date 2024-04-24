@@ -8,9 +8,7 @@ use DomainException;
 
 final class ValidationException extends DomainException
 {
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private readonly array $messages;
 
     /**

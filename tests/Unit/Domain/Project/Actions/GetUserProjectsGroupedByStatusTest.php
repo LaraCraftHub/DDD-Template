@@ -8,7 +8,6 @@ use App\Alias\EloquentCollection;
 use App\Domain\Project\Actions\GetUserProjectsGroupedByStatus;
 use App\Domain\Project\ProjectStatus;
 use App\Domain\Project\Repositories\ProjectRepository;
-use Illuminate\Support\Collection;
 use Mockery;
 use Mockery\MockInterface;
 use Override;

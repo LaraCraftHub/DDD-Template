@@ -31,7 +31,7 @@ jobs:
                 uses: ./.github/actions/php-setup
 
             -   name: Run PHPStan analysis
-                run: vendor/bin/phpstan analyse --error-format=github --ansi
+                run: vendor/bin/phpstan analyse ./app --error-format=github --ansi
 
     phpstan-tests:
         name: PHPStan - analysis on test code
@@ -46,7 +46,7 @@ jobs:
                 uses: ./.github/actions/php-setup
 
             -   name: Run PHPStan analysis
-                run: vendor/bin/phpstan analyse --configuration=phpstan.tests.dist.neon --error-format=github --ansi
+                run: vendor/bin/phpstan analyse --level=7 ./tests --error-format=github --ansi
 
     rector:
         name: PHP - Rector

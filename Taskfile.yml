@@ -206,7 +206,7 @@ tasks:
         cmds:
             -   task: php-cli
                 vars:
-                    CLI_ARGS: vendor/bin/phpstan analyse ./tests {{.PINT_ARGS}} {{.CLI_ARGS}}
+                    CLI_ARGS: vendor/bin/phpstan analyse --level=7 ./tests {{.PINT_ARGS}} {{.CLI_ARGS}}
 
     lint:
         desc: Run linting

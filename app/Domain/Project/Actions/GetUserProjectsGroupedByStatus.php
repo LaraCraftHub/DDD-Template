@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Domain\Project\Actions;
 
 use App\Alias\EloquentCollection;
-use App\Alias\SupportCollection;
 use App\Domain\Project\Project;
 use App\Domain\Project\Repositories\ProjectRepository;
 use App\Domain\User\User;
@@ -18,6 +17,7 @@ readonly class GetUserProjectsGroupedByStatus
 
     /**
      * @return EloquentCollection<int|string, EloquentCollection<int|string,Project>>
+     *
      * @phpstan-ignore-next-line EloquentCollection is a generic type <TKey, TModel> where TModel
      * extends \Illuminate\Database\Eloquent\Model but in this TModel is a an EloquentCollection due to the groupBY
      */
