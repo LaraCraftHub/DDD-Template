@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use App\Application\Http\Middleware\EncryptCookies;
 use App\Application\Http\Middleware\VerifyCsrfToken;
+use App\Application\Routing\ApiRoutingProvider;
+use App\Application\Routing\WebRoutingProvider;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -21,6 +23,10 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 return Application::configure(basePath: \dirname(__DIR__))
     ->withRouting(
+        using: function () {
+            (new WebRoutingProvider)();
+            (new ApiRoutingProvider)();
+        },
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {

@@ -13,12 +13,6 @@ return [
     App\Application\Providers\System\RouteServiceProvider::class,
 
     /*
-     * Routing Service Providers
-     */
-    App\Application\Routing\WebRoutingProvider::class,
-    App\Application\Routing\ApiRoutingProvider::class,
-
-    /*
      * Domain Service Providers...
      */
     App\Application\Providers\CommonProvider::class,
