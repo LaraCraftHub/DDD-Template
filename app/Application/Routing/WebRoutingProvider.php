@@ -5,26 +5,23 @@ declare(strict_types=1);
 namespace App\Application\Routing;
 
 use App\Application\Routing\Web\Admin\WelcomeRouteMapper;
-use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
-final class WebRoutingProvider extends RouteServiceProvider
+final readonly class WebRoutingProvider
 {
     /** @var RouteMapper[] */
-    private readonly array $routeMappers;
+    private array $routeMappers;
 
-    public function __construct(Application $app)
+    public function __construct()
     {
-        parent::__construct($app);
         // Declare all route mappers
         $this->routeMappers = [
             new WelcomeRouteMapper(),
         ];
     }
 
-    public function map(): void
+    public function __invoke(): void
     {
         Route::group([
             'middleware' => ['web', 'auth', 'admin'],

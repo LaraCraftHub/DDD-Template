@@ -4,7 +4,11 @@ services:
             context: ./
             dockerfile: ./docker/php-fpm/Dockerfile
         environment:
-            DB_CONNECTION: testing
+            DB_HOST: database
+            DB_DATABASE: laravel_ddd
+            DB_USERNAME: laravelddd
+            DB_PASSWORD: laravelddd
+
             DB_HOST_TESTING: database
             DB_DATABASE_TESTING: laravel_ddd_testing
             DB_USERNAME_TESTING: laravelddd
@@ -16,9 +20,10 @@ services:
         image: "mysql:8.3"
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: laravel_ddd_testing
             MYSQL_USER: laravelddd
             MYSQL_PASSWORD: laravelddd
+        volumes:
+            - ./docker/database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
     composer:
         image: "composer:2.7.2"
