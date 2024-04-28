@@ -77,8 +77,13 @@ parameters:
             message: 'This function is not allowed'
         -
             function: # Laravel
-                - 'auth()'
                 - 'config()'
+            message: 'This function is not allowed, use Illuminate\Contracts\Config\Repository'
+            allowIn:
+                - app/Application/Providers/*
+        -
+            function: # Laravel
+                - 'auth()'
                 - 'data_get()'
                 - 'data_set()'
                 - 'event()'
