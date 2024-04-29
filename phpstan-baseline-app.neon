@@ -1,0 +1,5 @@
+includes:
+	- ./phpstan.dist.neon
+
+parameters:
+	ignoreErrors:
