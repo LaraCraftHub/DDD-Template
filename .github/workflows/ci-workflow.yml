@@ -5,7 +5,7 @@ on: push
 jobs:
     php-code-style:
         name: PHP - Check Style
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         if: (!contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/staging'))
 
         steps:
@@ -20,7 +20,7 @@ jobs:
 
     phpstan-app:
         name: PHPStan - analysis on app code
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         if: (!contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/staging'))
 
         steps:
@@ -35,7 +35,7 @@ jobs:
 
     phpstan-tests:
         name: PHPStan - analysis on test code
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         if: (!contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/staging'))
 
         steps:
@@ -50,7 +50,7 @@ jobs:
 
     rector:
         name: PHP - Rector
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         if: (!contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/staging'))
 
         steps:
@@ -74,7 +74,7 @@ jobs:
 
     php-unit-tests:
         name: PHP - Unit Tests
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         if: (!contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/staging'))
 
         steps:
@@ -90,7 +90,7 @@ jobs:
 
     php-integration-tests-1:
         name: PHP - Integration Tests 1/3 - Application Layer
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         if: (!contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/staging'))
 
         services:
@@ -121,7 +121,7 @@ jobs:
 
     php-integration-tests-2:
         name: PHP - Integration Tests 2/3 - Domain Layer
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         if: (!contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/staging'))
 
         services:
@@ -152,7 +152,7 @@ jobs:
 
     php-integration-tests-3:
         name: PHP - Integration Tests 3/3 - Infrastructure Layer
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         if: (!contains(github.ref, 'refs/heads/master') && !contains(github.ref, 'refs/heads/staging'))
 
         services:
