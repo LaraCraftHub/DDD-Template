@@ -12,7 +12,7 @@
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.0",
         "brianium/paratest": "^7.4",
-        "driftingly/rector-laravel": "^1.1.0",
+        "driftingly/rector-laravel": "^2.0.0",
         "ergebnis/phpstan-rules": "^2.2",
         "fakerphp/faker": "^1.23.0",
         "larastan/larastan": "^2.9",
