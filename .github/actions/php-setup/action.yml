@@ -12,7 +12,7 @@ runs:
   steps:
     - name: Cache Composer packages
       id: composer-cache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: vendor
         key: composer-${{ hashFiles('composer.lock') }}
